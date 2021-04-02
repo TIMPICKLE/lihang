@@ -27,6 +27,7 @@ class KMeansScratch():
         #说人话就是 初始化一个形状和 一个sample一摸一样的 3个点
         self._centroid = np.zeros((self._k, n_feature))
         # 每个簇所包含的样本索引
+        #说人话就是 对簇进行 assign leable ，举例簇1 标签号为0 簇2的标签号是1 簇3标签号是2
         self._cluster = [[] for _ in range(self._k)]
 
         rng = np.random.default_rng()
@@ -36,6 +37,7 @@ class KMeansScratch():
         self._centroid = X[rnd_idx]
 
         for _ in range(self._max_iter):
+            #仔细看 这个for是个大循环 里面有两个小for循环 
             for i in range(n_sample):
                 # 样本i距离其它样本的最小距离
                 min_dist = np.inf
@@ -48,10 +50,12 @@ class KMeansScratch():
                         min_dist = dist
                         min_centroid = j
                 # 将第i个样本划分到最近的簇
+                #说人话就是 举例 sample246 属于 标签2 那么就在self_cluster增加一个元素2
                 self._cluster[min_centroid].append(i)
 
             prev_centroid = self._centroid
             # 更新聚类中心
+            #说人话就是 
             for j in range(self._k):
                 # 该簇所有样本索引
                 idx = self._cluster[j]
