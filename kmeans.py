@@ -23,7 +23,8 @@ class KMeansScratch():
     def fit(self, X):
         """模型训练"""
         n_sample, n_feature = X.shape
-        # 每个簇的中心
+        # 初始化每个簇的中心，self k=3. 形状是n_feature 
+        #说人话就是 初始化一个形状和 一个sample一摸一样的 3个点
         self._centroid = np.zeros((self._k, n_feature))
         # 每个簇所包含的样本索引
         self._cluster = [[] for _ in range(self._k)]
