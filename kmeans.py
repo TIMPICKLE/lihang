@@ -33,7 +33,7 @@ class KMeansScratch():
         rng = np.random.default_rng()
         # 随机获取k个索引
         rnd_idx = rng.permutation(n_sample)[:self._k]
-        # 初始随机k个中心
+        # 初始随机k个中心(随机挑选k个样本作为中心点)
         self._centroid = X[rnd_idx]
 
         for _ in range(self._max_iter):
@@ -44,7 +44,7 @@ class KMeansScratch():
                 # 最小距离所对应的中心
                 min_centroid = 0
                 for j in range(self._k):
-                    # 第i个样本与第j个中心的距离
+                    # 第i个样本与第j个中心的距离，相当于i点到 0.1.2簇❤️的距离1
                     dist = np.linalg.norm(X[i] - self._centroid[j])
                     if dist < min_dist:
                         min_dist = dist
@@ -57,7 +57,8 @@ class KMeansScratch():
             # 更新聚类中心
             #说人话就是 
             for j in range(self._k):
-                # 该簇所有样本索引
+                # 该簇所有样本索引。这个这样理解：你已经在数组中 储存了所有的sample属于那哪个类别，这样把属于0类别的所有sample的索引
+                #idx拿出来 
                 idx = self._cluster[j]
                 self._centroid[j] = np.mean(X[idx], axis=0)
 
