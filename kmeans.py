@@ -33,6 +33,7 @@ class KMeansScratch():
         rng = np.random.default_rng()
         # 随机获取k个索引
         rnd_idx = rng.permutation(n_sample)[:self._k]
+        #permutation的意思是随机打乱
         # 初始随机k个中心(随机挑选k个样本作为中心点)
         self._centroid = X[rnd_idx]
 
